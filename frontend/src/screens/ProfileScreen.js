@@ -1,15 +1,13 @@
-import { useState, useEffect } from "react";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useState, useEffect } from 'react';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Button,
   Flex,
   Heading,
-  Text,
   FormControl,
   FormLabel,
   Input,
-  Link,
   Spacer,
   Grid,
   Table,
@@ -19,23 +17,23 @@ import {
   Th,
   Td,
   Icon,
-} from "@chakra-ui/react";
-import Message from "../components/Message";
-import FormContainer from "../components/FormContainer";
-import { getUserDetails, updateUserProfile } from "../actions/userActions";
-import { listMyOrders } from "../actions/orderActions";
-import Loader from "../components/Loader";
-import { IoWarning } from "react-icons/io5";
+} from '@chakra-ui/react';
+import Message from '../components/Message';
+import FormContainer from '../components/FormContainer';
+import { getUserDetails, updateUserProfile } from '../actions/userActions';
+import { listMyOrders } from '../actions/orderActions';
+import Loader from '../components/Loader';
+import { IoWarning } from 'react-icons/io5';
 
 const ProfileScreen = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [message, setMessage] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [message, setMessage] = useState('');
 
   const userDetails = useSelector((state) => state.userDetails);
   const { loading, error, user } = userDetails;
@@ -51,7 +49,7 @@ const ProfileScreen = () => {
 
   useEffect(() => {
     if (!userInfo) {
-      navigate("/login");
+      navigate('/login');
     } else {
       if (!user.name) {
         dispatch(getUserDetails());
@@ -67,95 +65,94 @@ const ProfileScreen = () => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      setMessage("Passwords do not match");
+      setMessage('Passwords do not match');
     } else {
       dispatch(updateUserProfile({ id: user._id, name, email, password }));
     }
   };
 
   return (
-    <Grid templateColumns={{ sm: "1fr", md: "1fr 1fr" }} py="5" gap="10">
-      <Flex w="full" alignItems="center" justifyContent="center" py="5">
+    <Grid templateColumns={{ sm: '1fr', md: '1fr 1fr' }} py='5' gap='10'>
+      <Flex w='full' alignItems='center' justifyContent='center' py='5'>
         <FormContainer>
-          <Heading as="h1" mb="8" fontSize="3xl">
+          <Heading as='h1' mb='8' fontSize='3xl'>
             User Profile
           </Heading>
 
-          {error && <Message type="error">{error}</Message>}
-          {message && <Message type="error">{message}</Message>}
-          {success && <Message type="success">Profile Updated</Message>}
+          {error && <Message type='error'>{error}</Message>}
+          {message && <Message type='error'>{message}</Message>}
+          {success && <Message type='success'>Profile Updated</Message>}
 
           <form onSubmit={submitHandler}>
-            <FormControl id="name">
-              <FormLabel htmlFor="name">Your Name</FormLabel>
+            <FormControl id='name'>
+              <FormLabel htmlFor='name'>Your Name</FormLabel>
               <Input
-                id="name"
-                type="text"
-                placeholder="Your full name"
+                id='name'
+                type='text'
+                placeholder='Your full name'
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
             </FormControl>
 
-            <Spacer h="3" />
+            <Spacer h='3' />
 
-            <FormControl id="email">
-              <FormLabel htmlFor="email">Email address</FormLabel>
+            <FormControl id='email'>
+              <FormLabel htmlFor='email'>Email address</FormLabel>
               <Input
-                id="email"
-                type="email"
-                placeholder="username@domain.com"
+                id='email'
+                type='email'
+                placeholder='username@domain.com'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </FormControl>
 
-            <Spacer h="3" />
+            <Spacer h='3' />
 
-            <FormControl id="password">
-              <FormLabel htmlFor="password">Password</FormLabel>
+            <FormControl id='password'>
+              <FormLabel htmlFor='password'>Password</FormLabel>
               <Input
-                id="password"
-                type="password"
-                placeholder="************"
+                id='password'
+                type='password'
+                placeholder='************'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </FormControl>
 
-            <Spacer h="3" />
+            <Spacer h='3' />
 
-            <FormControl id="confirmPassword">
-              <FormLabel htmlFor="confirmPassword">Confirm Password</FormLabel>
+            <FormControl id='confirmPassword'>
+              <FormLabel htmlFor='confirmPassword'>Confirm Password</FormLabel>
               <Input
-                id="confirmPassword"
-                type="password"
-                placeholder="************"
+                id='confirmPassword'
+                type='password'
+                placeholder='************'
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </FormControl>
 
-            <Button type="submit" colorScheme="teal" mt="4" isLoading={loading}>
+            <Button type='submit' colorScheme='teal' mt='4' isLoading={loading}>
               Update
             </Button>
           </form>
         </FormContainer>
       </Flex>
 
-      {/* {Order} */}
-      <Flex direction="column">
-        <Heading as="h2" mb="4">
-          {" "}
+      {/* Order */}
+      <Flex direction='column'>
+        <Heading as='h2' mb='4'>
           My Orders
         </Heading>
 
         {loadingOrders ? (
           <Loader />
         ) : errorOrders ? (
-          <Message type="error">{errorOrders}</Message>
+          <Message type='error'>{errorOrders}</Message>
         ) : (
-          <Table variant="striped">
+          <Table variant='striped'>
             <Thead>
               <Tr>
                 <Th>ID</Th>
@@ -170,28 +167,28 @@ const ProfileScreen = () => {
               {orders.map((order) => (
                 <Tr key={order._id}>
                   <Td>{order._id}</Td>
-                  <Td>{order.createdAt.substring(0, 10)} </Td>
+                  <Td>{order.createdAt.substring(0, 10)}</Td>
                   <Td>{order.totalPrice}</Td>
                   <Td>
-                    {order.ispaid ? (
+                    {order.isPaid ? (
                       order.paidAt.substring(0, 10)
                     ) : (
-                      <Icon as={IoWarning} color="red" />
+                      <Icon as={IoWarning} color='red' />
                     )}
                   </Td>
                   <Td>
                     {order.isDelivered ? (
                       order.deliveredAt.substring(0, 10)
                     ) : (
-                      <Icon as={IoWarning} color="red" />
+                      <Icon as={IoWarning} color='red' />
                     )}
                   </Td>
                   <Td>
                     <Button
                       as={RouterLink}
                       to={`/order/${order._id}`}
-                      colorScheme="teal"
-                      size="sm"
+                      colorScheme='teal'
+                      size='sm'
                     >
                       Details
                     </Button>

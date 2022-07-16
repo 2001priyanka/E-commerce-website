@@ -1,11 +1,6 @@
-import { useEffect } from "react";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  listProducts,
-  deleteProduct,
-  createProduct,
-} from "../actions/productAction";
+import { useEffect } from 'react';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Button,
   Flex,
@@ -18,11 +13,16 @@ import {
   Th,
   Td,
   Box,
-} from "@chakra-ui/react";
-import { IoPencilSharp, IoTrashBinSharp, IoAdd } from "react-icons/io5";
-import Loader from "../components/Loader";
-import Message from "../components/Message";
-import { PRODUCT_CREATE_RESET } from "../constants/productConstants";
+} from '@chakra-ui/react';
+import { IoPencilSharp, IoTrashBinSharp, IoAdd } from 'react-icons/io5';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
+import {
+  listProducts,
+  deleteProduct,
+  createProduct,
+} from '../actions/productActions';
+import { PRODUCT_CREATE_RESET } from '../constants/productConstants';
 
 const ProductListScreen = () => {
   const dispatch = useDispatch();
@@ -53,7 +53,7 @@ const ProductListScreen = () => {
     dispatch({ type: PRODUCT_CREATE_RESET });
 
     if (!userInfo.isAdmin) {
-      navigate("/login");
+      navigate('/login');
     }
 
     if (successCreate) {
@@ -61,10 +61,17 @@ const ProductListScreen = () => {
     } else {
       dispatch(listProducts());
     }
-  }, [dispatch, navigate, userInfo, successDelete]);
+  }, [
+    dispatch,
+    navigate,
+    userInfo,
+    successDelete,
+    successCreate,
+    createdProduct,
+  ]);
 
   const deleteHandler = (id) => {
-    if (window.confirm("Are you sure?")) {
+    if (window.confirm('Are you sure?')) {
       dispatch(deleteProduct(id));
     }
   };
@@ -75,30 +82,29 @@ const ProductListScreen = () => {
 
   return (
     <>
-      <Flex mb="5" alignItems="center" justifyContent="space-between">
-        <Heading as="h1" fontSize="3xl" mb="5">
+      <Flex mb='5' alignItems='center' justifyContent='space-between'>
+        <Heading as='h1' fontSize='3xl' mb='5'>
           Product
         </Heading>
-
-        <Button onClick={createProductHandler} colorScheme="teal">
-          <Icon as={IoAdd} mr="2" fontSize="xl" fontWeight="bold" />
-          Create Product
+        <Button onClick={createProductHandler} colorScheme='teal'>
+          <Icon as={IoAdd} mr='2' fontSize='xl' fontWeight='bold' /> Create
+          Product
         </Button>
       </Flex>
 
       {loadingDelete && <Loader />}
-      {errorDelete && <Message type="error">{errorDelete}</Message>}
+      {errorDelete && <Message type='error'>{errorDelete}</Message>}
 
       {loadingCreate && <Loader />}
-      {errorCreate && <Message type="error">{errorCreate}</Message>}
+      {errorCreate && <Message type='error'>{errorCreate}</Message>}
 
       {loading ? (
         <Loader />
       ) : error ? (
-        <Message type="error">{error}</Message>
+        <Message type='error'>{error}</Message>
       ) : (
-        <Box bgColor="white" rounded="lg" shadow="lg" px="5" py="5">
-          <Table variant="striped" colorScheme="blue" size="sm">
+        <Box bgColor='white' rounded='lg' shadow='lg' px='5' py='5'>
+          <Table variant='striped' colorScheme='gray' size='sm'>
             <Thead>
               <Tr>
                 <Th>ID</Th>
@@ -118,21 +124,21 @@ const ProductListScreen = () => {
                   <Td>{product.category}</Td>
                   <Td>{product.brand}</Td>
                   <Td>
-                    <Flex justifyContent="flex-end" alignItems="center">
+                    <Flex justifyContent='flex-end' alignItems='center'>
                       <Button
-                        mr="4"
+                        mr='4'
                         as={RouterLink}
                         to={`/admin/product/${product._id}/edit`}
-                        colorScheme="teal"
+                        colorScheme='teal'
                       >
-                        <Icon as={IoPencilSharp} color="white" size="sm" />
+                        <Icon as={IoPencilSharp} color='white' size='sm' />
                       </Button>
                       <Button
-                        mr="4"
-                        colorScheme="red"
+                        mr='4'
+                        colorScheme='red'
                         onClick={() => deleteHandler(product._id)}
                       >
-                        <Icon as={IoTrashBinSharp} color="white" size="sm" />
+                        <Icon as={IoTrashBinSharp} color='white' size='sm' />
                       </Button>
                     </Flex>
                   </Td>

@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import {
   Flex,
   Heading,
@@ -12,10 +12,10 @@ import {
   MenuList,
   MenuItem,
   Button,
-} from "@chakra-ui/react";
-import { HiOutlineMenuAlt3, HiShoppingBag, HiUser } from "react-icons/hi";
-import { IoChevronDown } from "react-icons/io5";
-import { logout } from "../actions/userActions";
+} from '@chakra-ui/react';
+import { HiOutlineMenuAlt3, HiShoppingBag, HiUser } from 'react-icons/hi';
+import { IoChevronDown } from 'react-icons/io5';
+import { logout } from '../actions/userActions';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -28,69 +28,69 @@ const Header = () => {
 
   const logoutHandler = () => {
     dispatch(logout());
-    navigate("/");
+    navigate('/');
   };
 
   return (
     <Flex
-      as="header"
-      align="center"
-      justify="space-between"
-      wrap="wrap"
-      py="5"
-      px="5"
-      bgColor="gray.800"
-      w="100%"
-      top="0"
-      pos="fixed"
-      zIndex="9999"
+      as='header'
+      align='center'
+      justify='space-between'
+      wrap='wrap'
+      py='6'
+      px='6'
+      bgColor='gray.800'
+      w='100%'
+      top='0'
+      pos='fixed'
+      zIndex='9999'
     >
-      <Flex align="center" mr="5">
+      <Flex align='center' mr='5'>
         <Heading
-          as="h1"
-          color="whiteAlpha.800"
-          fontWeight="bold"
-          size="md"
-          letterSpacing="md"
+          as='h1'
+          color='whiteAlpha.800'
+          fontWeight='bold'
+          size='md'
+          letterSpacing='md'
         >
           <Link
             as={RouterLink}
-            to="/"
-            _hover={{ color: "pink.200", textDecoder: "none" }}
+            to='/'
+            _hover={{ color: 'gray.500', textDecor: 'none' }}
           >
-            RST store
+            RST Store
           </Link>
         </Heading>
       </Flex>
 
       <Box
-        display={{ base: "block", md: "none", sm: "block" }}
+        display={{ base: 'block', md: 'none', sm: 'block' }}
         onClick={() => setShow(!show)}
       >
-        <Icon as={HiOutlineMenuAlt3} color="white" w="6" h="6" />
+        <Icon as={HiOutlineMenuAlt3} color='white' w='6' h='6' />
       </Box>
 
       <Box
-        display={{ base: show ? "block" : "none", md: "Flex" }}
-        width={{ base: "full", md: "auto" }}
-        alignItems="center"
+        display={{ base: show ? 'block' : 'none', md: 'flex' }}
+        width={{ base: 'full', md: 'auto' }}
+        alignItems='center'
       >
         <Link
           as={RouterLink}
-          to="/cart"
-          fontSize="sm"
-          letterSpacing="wide"
-          color="whiteAlpha.600"
-          fontWeight="bold"
-          textTransform="uppercase"
-          mr="5"
-          display="flex"
-          alignItems="center"
-          _hover={{ color: "whiteAlpha.800" }}
+          to='/cart'
+          fontSize='sm'
+          letterSpacing='wide'
+          color='whiteAlpha.600'
+          fontWeight='bold'
+          textTransform='uppercase'
+          mr='5'
+          display='flex'
+          alignItems='center'
+          _hover={{ color: 'whiteAlpha.800' }}
           mt={{ base: 4, md: 0 }}
         >
-          <Icon as={HiShoppingBag} mr="1" w="4" h="4" />
-          cart
+          <Icon as={HiShoppingBag} mr='1' w='4' h='4' />
+          Cart
         </Link>
 
         {userInfo ? (
@@ -98,13 +98,13 @@ const Header = () => {
             <MenuButton
               as={Button}
               rightIcon={<IoChevronDown />}
-              _hover={{ textDecoder: "none", opacity: "0.7" }}
+              _hover={{ textDecoration: 'none', opacity: '0.7' }}
             >
               {userInfo.name}
             </MenuButton>
             <MenuList>
-              <MenuItem as={RouterLink} to="/profile">
-                profile
+              <MenuItem as={RouterLink} to='/profile'>
+                Profile
               </MenuItem>
               <MenuItem onClick={logoutHandler}>Logout</MenuItem>
             </MenuList>
@@ -112,45 +112,45 @@ const Header = () => {
         ) : (
           <Link
             as={RouterLink}
-            to="/login"
-            fontSize="sm"
-            letterSpacing="wide"
-            color="whiteAlpha.600"
-            fontWeight="bold"
-            textTransform="uppercase"
-            mr="8"
-            display="flex"
-            alignItems="center"
-            _hover={{ color: "whiteAlpha.800" }}
+            to='/login'
+            fontSize='sm'
+            letterSpacing='wide'
+            color='whiteAlpha.600'
+            fontWeight='bold'
+            textTransform='uppercase'
+            mr='5'
+            display='flex'
+            alignItems='center'
+            _hover={{ color: 'whiteAlpha.800' }}
             mt={{ base: 4, md: 0 }}
           >
-            <Icon as={HiUser} mr="1" w="4" h="8" />
+            <Icon as={HiUser} mr='1' w='4' h='4' />
             Login
           </Link>
         )}
-        {/*Admin Menu*/}
 
+        {/* Admin Menu */}
         {userInfo && userInfo.isAdmin && (
           <Menu>
             <MenuButton
-              ml="5"
-              color="white"
-              fontSize="sm"
-              fontWeight="semibold"
+              ml='5'
+              color='white'
+              fontSize='sm'
+              fontWeight='semibold'
               as={Link}
-              textTransform="uppercase"
-              _hover={{ textDecoration: "none", opacity: "0.7" }}
+              textTransform='uppercase'
+              _hover={{ textDecoration: 'none', opacity: '0.7' }}
             >
               Manage <Icon as={IoChevronDown} />
             </MenuButton>
             <MenuList>
-              <MenuItem as={RouterLink} to="/admin/userlist">
+              <MenuItem as={RouterLink} to='/admin/userlist'>
                 All Users
               </MenuItem>
-              <MenuItem as={RouterLink} to="/admin/productlist">
+              <MenuItem as={RouterLink} to='/admin/productlist'>
                 All Products
               </MenuItem>
-              <MenuItem as={RouterLink} to="/admin/orderlist">
+              <MenuItem as={RouterLink} to='/admin/orderlist'>
                 All Orders
               </MenuItem>
             </MenuList>

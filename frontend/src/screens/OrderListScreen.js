@@ -1,6 +1,6 @@
-import { useEffect } from "react";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from 'react';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Button,
   Flex,
@@ -13,10 +13,11 @@ import {
   Th,
   Td,
   Box,
-} from "@chakra-ui/react";
-import { IoCloseCircleSharp } from "react-icons/io5";
-import Loader from "../components/Loader";
-import { listOrders } from "../actions/orderActions";
+} from '@chakra-ui/react';
+import { IoCloseCircleSharp } from 'react-icons/io5';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
+import { listOrders } from '../actions/orderActions';
 
 const OrderListScreen = () => {
   const dispatch = useDispatch();
@@ -32,28 +33,28 @@ const OrderListScreen = () => {
     if (userInfo && userInfo.isAdmin) {
       dispatch(listOrders());
     } else {
-      navigate("/login");
+      navigate('/login');
     }
   }, [dispatch, userInfo, navigate]);
 
   return (
     <>
-      <Heading as="h1" fontSize="3xl" mb="5">
+      <Heading as='h1' fontSize='3xl' mb='5'>
         Orders
       </Heading>
 
       {loading ? (
         <Loader />
       ) : error ? (
-        <Message type="error">{error}</Message>
+        <Message type='error'>{error}</Message>
       ) : (
-        <Box bgColor="white" rounded="lg" shadow="lg" px="5" py="5">
-          <Table variant="striped" colorScheme="gray" size="sm">
+        <Box bgColor='white' rounded='lg' shadow='lg' px='5' py='5'>
+          <Table variant='striped' colorScheme='gray' size='sm'>
             <Thead>
               <Tr>
                 <Th>ID</Th>
                 <Th>USER</Th>
-                <Th>Date</Th>
+                <Th>DATE</Th>
                 <Th>TOTAL PRICE</Th>
                 <Th>PAID</Th>
                 <Th>DELIVERED</Th>
@@ -73,31 +74,31 @@ const OrderListScreen = () => {
                     ) : (
                       <Icon
                         as={IoCloseCircleSharp}
-                        color="red.600"
-                        w="8"
-                        h="8"
+                        color='red.600'
+                        w='8'
+                        h='8'
                       />
                     )}
                   </Td>
                   <Td>
                     {order.isDelivered ? (
-                      order.deliveredAt
+                      order.deliveredAt.substring(0, 10)
                     ) : (
                       <Icon
                         as={IoCloseCircleSharp}
-                        color="red.600"
-                        w="8"
-                        h="8"
+                        color='red.600'
+                        w='8'
+                        h='8'
                       />
                     )}
                   </Td>
                   <Td>
-                    <Flex justifyContent="flex-end" alignItems="center">
+                    <Flex justifyContent='flex-end' alignItems='center'>
                       <Button
-                        mr="4"
+                        mr='4'
                         as={RouterLink}
                         to={`/order/${order._id}`}
-                        colorScheme="teal"
+                        colorScheme='teal'
                       >
                         Details
                       </Button>

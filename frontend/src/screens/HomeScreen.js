@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Heading, Grid } from "@chakra-ui/react";
 import ProductCard from "../components/ProductCard";
-import { listProducts } from "../actions/productAction";
+import { listProducts } from "../actions/productActions";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 
@@ -28,8 +28,8 @@ const HomeScreen = () => {
         <Message type="error">{error}</Message>
       ) : (
         <Grid templateColumns="1fr 1fr 1fr 1fr" gap="8">
-          {products.map((product) => (
-            <ProductCard key={product._id} product={product} />
+          {products.map((newProduct) => (
+            <ProductCard key={newProduct._id} product={newProduct} />
           ))}
         </Grid>
       )}

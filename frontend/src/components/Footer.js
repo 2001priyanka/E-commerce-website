@@ -1,8 +1,9 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Text } from '@chakra-ui/react';
+
 const Footer = () => {
   return (
-    <Flex as="footer" justifyContent="center" py="8">
-      <Text>Copyright 2022. Rst Store. All Right Reserved.</Text>
+    <Flex as='footer' justifyContent='center' py='5'>
+      <Text>Copyright 2022. RST Store. All Rights Reserved.</Text>
     </Flex>
   );
 };

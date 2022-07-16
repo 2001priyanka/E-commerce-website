@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 import {
   ORDER_CREATE_REQUEST,
   ORDER_CREATE_SUCCESS,
@@ -18,7 +18,7 @@ import {
   ORDER_DELIVER_REQUEST,
   ORDER_DELIVER_SUCCESS,
   ORDER_DELIVER_FAIL,
-} from "../constants/orderConstants";
+} from '../constants/orderConstants';
 
 export const createOrder = (order) => async (dispatch, getState) => {
   try {
@@ -31,7 +31,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
     const config = {
       headers: {
         Authorization: `Bearer ${userInfo.token}`,
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     };
 
@@ -52,9 +52,11 @@ export const createOrder = (order) => async (dispatch, getState) => {
 export const getOrderDetails = (id) => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_DETAILS_REQUEST });
+
     const {
       userLogin: { userInfo },
     } = getState();
+
     const config = {
       headers: {
         Authorization: `Bearer ${userInfo.token}`,
@@ -62,6 +64,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.get(`/api/orders/${id}`, config);
+
     dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data });
   } catch (err) {
     dispatch({
@@ -78,13 +81,15 @@ export const payOrder =
   (orderId, paymentResult) => async (dispatch, getState) => {
     try {
       dispatch({ type: ORDER_PAY_REQUEST });
+
       const {
         userLogin: { userInfo },
       } = getState();
+
       const config = {
         headers: {
           Authorization: `Bearer ${userInfo.token}`,
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
       };
 
@@ -172,7 +177,7 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
 
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${userInfo.token}`,
       },
     };

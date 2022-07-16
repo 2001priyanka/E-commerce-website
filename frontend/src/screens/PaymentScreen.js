@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Button,
   Flex,
@@ -11,10 +11,10 @@ import {
   HStack,
   RadioGroup,
   Spacer,
-} from "@chakra-ui/react";
-import FormContainer from "../components/FormContainer";
-import { savePaymentMethod } from "../actions/cartAction";
-import CheckoutSteps from "../components/CheckoutSteps";
+} from '@chakra-ui/react';
+import FormContainer from '../components/FormContainer';
+import { savePaymentMethod } from '../actions/cartActions';
+import CheckoutSteps from '../components/CheckoutSteps';
 
 const PaymentScreen = () => {
   const dispatch = useDispatch();
@@ -24,47 +24,47 @@ const PaymentScreen = () => {
   const { shippingAddress, paymentMethod } = cart;
 
   const [paymentMethodRadio, setPaymentMethodRadio] = useState(
-    paymentMethod || "paypal"
+    paymentMethod || 'paypal'
   );
 
   useEffect(() => {
     if (!shippingAddress) {
-      navigate("/shipping");
+      navigate('/shipping');
     }
   }, [navigate, shippingAddress]);
 
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(savePaymentMethod(paymentMethodRadio));
-    navigate("/placeorder");
+    navigate('/placeorder');
   };
 
   return (
-    <Flex w="full" alignItems="center" justifyContent="center" py="5">
+    <Flex w='full' alignItems='center' justifyContent='center' py='5'>
       <FormContainer>
         <CheckoutSteps step1 step2 step3 />
 
-        <Heading as="h2" mb="8" fontSize="3xl">
+        <Heading as='h2' mb='8' fontSize='3xl'>
           Payment Method
         </Heading>
 
         <form onSubmit={submitHandler}>
-          <FormControl as="fieldset">
-            <FormLabel as="legend">Select Methods</FormLabel>
+          <FormControl as='fieldset'>
+            <FormLabel as='legend'>Select Methods</FormLabel>
             <RadioGroup
               defaultValue={paymentMethodRadio}
               value={paymentMethodRadio}
               onChange={setPaymentMethodRadio}
             >
-              <HStack space="24px">
-                <Radio value="paypal">PayPal or Credit/Debit Card</Radio>
+              <HStack space='24px'>
+                <Radio value='paypal'>PayPal or Credit/Debit Card</Radio>
               </HStack>
             </RadioGroup>
           </FormControl>
 
-          <Spacer h="3" />
+          <Spacer h='3' />
 
-          <Button type="submit" colorScheme="teal" mt="4">
+          <Button type='submit' colorScheme='teal' mt='4'>
             Continue
           </Button>
         </form>

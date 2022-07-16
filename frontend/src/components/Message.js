@@ -1,6 +1,6 @@
-import { Alert, AlertIcon, AlertTitle } from "@chakra-ui/react";
+import { Alert, AlertIcon, AlertTitle } from '@chakra-ui/react';
 
-const Message = ({ type = "info", children }) => {
+const Message = ({ type = 'info', children }) => {
   return (
     <Alert status={type}>
       <AlertIcon />

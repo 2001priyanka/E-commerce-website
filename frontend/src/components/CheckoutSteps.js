@@ -1,16 +1,16 @@
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink } from 'react-router-dom';
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   Flex,
-} from "@chakra-ui/react";
-import { IoCaretForwardSharp } from "react-icons/io5";
+} from '@chakra-ui/react';
+import { IoCaretForwardSharp } from 'react-icons/io5';
 
 const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
   return (
-    <Flex justifyContent="center" mb="8">
-      <Breadcrumb separator={<IoCaretForwardSharp color="gray.500" />}>
+    <Flex justifyContent='center' mb='8'>
+      <Breadcrumb separator={<IoCaretForwardSharp color='gray.500' />}>
         {/* Step 1 */}
         <BreadcrumbItem>
           {step1 ? (
@@ -18,8 +18,8 @@ const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
           ) : (
             <BreadcrumbLink
               disabled
-              color="gray.400"
-              _hover={{ textDecor: "none" }}
+              color='gray.400'
+              _hover={{ textDecor: 'none' }}
             >
               Login
             </BreadcrumbLink>
@@ -29,14 +29,14 @@ const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
         {/* Step 2 */}
         <BreadcrumbItem>
           {step2 ? (
-            <BreadcrumbLink as={RouterLink} to="/shipping">
+            <BreadcrumbLink as={RouterLink} to='/shipping'>
               Shippping
             </BreadcrumbLink>
           ) : (
             <BreadcrumbLink
               disabled
-              color="gray.400"
-              _hover={{ textDecor: "none" }}
+              color='gray.400'
+              _hover={{ textDecor: 'none' }}
             >
               Shipping
             </BreadcrumbLink>
@@ -46,14 +46,14 @@ const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
         {/* Step 3 */}
         <BreadcrumbItem>
           {step3 ? (
-            <BreadcrumbLink as={RouterLink} to="/payment">
+            <BreadcrumbLink as={RouterLink} to='/payment'>
               Payment
             </BreadcrumbLink>
           ) : (
             <BreadcrumbLink
               disabled
-              color="gray.400"
-              _hover={{ textDecor: "none" }}
+              color='gray.400'
+              _hover={{ textDecor: 'none' }}
             >
               Payment
             </BreadcrumbLink>
@@ -63,14 +63,14 @@ const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
         {/* Step 4 */}
         <BreadcrumbItem>
           {step4 ? (
-            <BreadcrumbLink as={RouterLink} to="/placeorder">
+            <BreadcrumbLink as={RouterLink} to='/placeorder'>
               Place Order
             </BreadcrumbLink>
           ) : (
             <BreadcrumbLink
               disabled
-              color="gray.400"
-              _hover={{ textDecor: "none" }}
+              color='gray.400'
+              _hover={{ textDecor: 'none' }}
             >
               Place Order
             </BreadcrumbLink>

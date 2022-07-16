@@ -8,7 +8,7 @@ const connectDB = async () => {
     });
     console.log(
       `MongoDB connected: ${conn.connection.host}`.cyan.bold.underline
-    );
+    ); 
   } catch (error) {
     console.error(`Error:${error.message}`.red.bold);
     process.exit(1);

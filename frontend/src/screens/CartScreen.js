@@ -1,11 +1,11 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 import {
   useParams,
   useSearchParams,
   useNavigate,
   Link as RouterLink,
-} from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+} from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Flex,
   Text,
@@ -17,10 +17,10 @@ import {
   Select,
   Button,
   Icon,
-} from "@chakra-ui/react";
-import { IoTrashBinSharp } from "react-icons/io5";
-import Message from "../components/Message";
-import { addToCart, removeFromCart } from "../actions/cartAction";
+} from '@chakra-ui/react';
+import { IoTrashBinSharp } from 'react-icons/io5';
+import Message from '../components/Message';
+import { addToCart, removeFromCart } from '../actions/cartActions';
 
 const CartScreen = () => {
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ const CartScreen = () => {
   const [searchParams] = useSearchParams();
 
   const { id: productId } = useParams();
-  let qty = searchParams.get("qty");
+  let qty = searchParams.get('qty');
 
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
@@ -50,51 +50,51 @@ const CartScreen = () => {
   return (
     <Grid>
       <Box>
-        <Heading mb="8">Shopping Cart</Heading>
+        <Heading mb='8'>Shopping Cart</Heading>
         <Flex>
           {cartItems.length === 0 ? (
             <Message>
-              Your cart is empty.{" "}
-              <Link as={RouterLink} to="/">
+              Your cart is empty.{' '}
+              <Link as={RouterLink} to='/'>
                 Go Back
               </Link>
             </Message>
           ) : (
-            <Grid templateColumns="4fr 2fr" gap="10" w="full">
-              <Flex direction="column">
+            <Grid templateColumns='4fr 2fr' gap='10' w='full'>
+              <Flex direction='column'>
                 {cartItems.map((item) => (
                   <Grid
                     key={item.product}
-                    size="100%"
-                    alignItems="center"
-                    justifyContent="space-between"
-                    borderBottom="1px"
-                    borderColor="gray.200"
-                    py="4"
-                    px="2"
-                    rounded="lg"
-                    _hover={{ bgColor: "gray.50" }}
-                    templateColumns="1fr 4fr 2fr 2fr 2fr"
+                    size='100%'
+                    alignItems='center'
+                    justifyContent='space-between'
+                    borderBottom='1px'
+                    borderColor='gray.200'
+                    py='4'
+                    px='2'
+                    rounded='lg'
+                    _hover={{ bgColor: 'gray.50' }}
+                    templateColumns='1fr 4fr 2fr 2fr 2fr'
                   >
                     {/* Product Image */}
                     <Image
                       src={item.image}
                       alt={item.name}
-                      borderRadius="lg"
-                      height="14"
-                      width="14"
-                      objectFit="cover"
+                      borderRadius='lg'
+                      height='14'
+                      width='14'
+                      objectFit='cover'
                     />
 
                     {/* Product Image */}
-                    <Text fontWeight="semibold" fontSize="lg">
+                    <Text fontWeight='semibold' fontSize='lg'>
                       <Link as={RouterLink} to={`/product/${item.product}`}>
                         {item.name}
                       </Link>
                     </Text>
 
                     {/* Product Price */}
-                    <Text fontWeight="semibold" fontSize="lg">
+                    <Text fontWeight='semibold' fontSize='lg'>
                       ₹{item.price}
                     </Text>
 
@@ -104,7 +104,7 @@ const CartScreen = () => {
                       onChange={(e) =>
                         dispatch(addToCart(+e.target.value, item.product))
                       }
-                      width="20"
+                      width='20'
                     >
                       {[...Array(item.countInStock).keys()].map((i) => (
                         <option key={i + 1} value={i + 1}>
@@ -115,8 +115,8 @@ const CartScreen = () => {
 
                     {/* Delete Button */}
                     <Button
-                      type="button"
-                      colorScheme="red"
+                      type='button'
+                      colorScheme='red'
                       onClick={() => removeFromCartHandler(item.product)}
                     >
                       <Icon as={IoTrashBinSharp} />
@@ -127,26 +127,26 @@ const CartScreen = () => {
 
               {/* Second Column */}
               <Flex
-                direction="column"
-                border="1px"
-                borderWidth="2"
-                borderColor="gray.200"
-                rounded="md"
-                padding="5"
-                height="48"
-                justifyContent="space-between"
+                direction='column'
+                border='1px'
+                borderWidth='2'
+                borderColor='gray.200'
+                rounded='md'
+                padding='5'
+                height='48'
+                justifyContent='space-between'
               >
-                <Flex direction="column">
-                  <Heading as="h2" fontSize="2xl" mb="2">
+                <Flex direction='column'>
+                  <Heading as='h2' fontSize='2xl' mb='2'>
                     Subtotal (
-                    {cartItems.reduce((acc, currVal) => acc + currVal.qty, 0)}{" "}
+                    {cartItems.reduce((acc, currVal) => acc + currVal.qty, 0)}{' '}
                     items)
                   </Heading>
                   <Text
-                    fontWeight="bold"
-                    fontSize="2xl"
-                    color="blue.600"
-                    mb="4"
+                    fontWeight='bold'
+                    fontSize='2xl'
+                    color='blue.600'
+                    mb='4'
                   >
                     ₹
                     {cartItems.reduce(
@@ -156,11 +156,11 @@ const CartScreen = () => {
                   </Text>
 
                   <Button
-                    type="button"
+                    type='button'
                     disabled={cartItems.length === 0}
-                    size="lg"
-                    colorScheme="teal"
-                    bgColor="gray.800"
+                    size='lg'
+                    colorScheme='teal'
+                    bgColor='gray.800'
                     onClick={checkoutHandler}
                   >
                     Proceed to Checkout

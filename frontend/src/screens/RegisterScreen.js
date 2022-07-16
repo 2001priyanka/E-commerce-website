@@ -1,37 +1,37 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 import {
   Link as RouterLink,
   useSearchParams,
   useNavigate,
-} from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+} from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Button,
   Flex,
-  Text,
   Heading,
-  FormLabel,
+  Text,
   FormControl,
+  FormLabel,
   Input,
   Link,
   Spacer,
-} from "@chakra-ui/react";
-import Message from "../components/Message";
-import FormContainer from "../components/FormContainer";
-import { register } from "../actions/userActions";
+} from '@chakra-ui/react';
+import Message from '../components/Message';
+import FormContainer from '../components/FormContainer';
+import { register } from '../actions/userActions';
 
 const RegisterScreen = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   let [searchParams] = useSearchParams();
-  let redirect = searchParams.get("redirect") || "/";
+  let redirect = searchParams.get('redirect') || '/';
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [Message, setMessage] = useState(null);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [message, setMessage] = useState(null);
 
   const userRegister = useSelector((state) => state.userRegister);
   const { loading, error, userInfo } = userRegister;
@@ -45,81 +45,82 @@ const RegisterScreen = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      setMessage("Password do not match");
+      setMessage('Passwords do not match');
     } else {
       dispatch(register(name, email, password));
     }
   };
 
   return (
-    <Flex w="full" alignItems="center" justifyContent="center" py="5">
+    <Flex w='full' alignItems='center' justifyContent='center' py='5'>
       <FormContainer>
-        <Heading as="h1" mb="8" fontSize="3xl">
+        <Heading as='h1' mb='8' fontSize='3xl'>
           Register
         </Heading>
 
-        {error && <Message type="error">{error}</Message>}
-        {Message && <Message type="error">{Message}</Message>}
+        {error && <Message type='error'>{error}</Message>}
+        {message && <Message type='error'>{message}</Message>}
 
         <form onSubmit={submitHandler}>
-          <FormControl id="name">
-            <FormLabel htmlFor="name">Your Name</FormLabel>
+          <FormControl id='name'>
+            <FormLabel htmlFor='name'>Your Name</FormLabel>
             <Input
-              id="name"
-              type="text"
-              placeholder="Your full name"
+              id='name'
+              type='text'
+              placeholder='Your full name'
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
           </FormControl>
 
-          <Spacer h="3" />
+          <Spacer h='3' />
 
-          <FormControl id="email">
-            <FormLabel htmlFor="email">Email address</FormLabel>
-
+          <FormControl id='email'>
+            <FormLabel htmlFor='email'>Email address</FormLabel>
             <Input
-              id="email"
-              type="email"
-              placeholder="username@domain.com"
+              id='email'
+              type='email'
+              placeholder='username@domain.com'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </FormControl>
 
-          <Spacer h="3" />
+          <Spacer h='3' />
 
-          <FormControl id="password">
-            <FormLabel htmlFor="password">Password</FormLabel>
+          <FormControl id='password'>
+            <FormLabel htmlFor='password'>Password</FormLabel>
             <Input
-              id="password"
-              type="password"
-              placeholder="************"
+              id='password'
+              type='password'
+              placeholder='************'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </FormControl>
 
-          <Spacer h="3" />
+          <Spacer h='3' />
 
-          <FormControl id="confirmPassword">
-            <FormLabel htmlFor="'confirmPassword">confirmPassword</FormLabel>
+          <FormControl id='confirmPassword'>
+            <FormLabel htmlFor='confirmPassword'>Confirm Password</FormLabel>
             <Input
-              id="confirmPassword"
-              type="password"
-              placeholder="*******"
+              id='confirmPassword'
+              type='password'
+              placeholder='************'
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </FormControl>
-          <Button type="submit" colorScheme="teal" mt="4" isLoading={loading}>
+
+          <Button type='submit' colorScheme='teal' mt='4' isLoading={loading}>
             Register
           </Button>
         </form>
-        <Flex pt="10">
-          <Text fontWeight="semibold">
-            Already a Customer?{" "}
-            <Link as={RouterLink} to="/login">
+
+        <Flex pt='10'>
+          <Text fontWeight='semibold'>
+            Already a Customer?{' '}
+            <Link as={RouterLink} to='/login'>
               Click here to login
             </Link>
           </Text>
@@ -128,4 +129,5 @@ const RegisterScreen = () => {
     </Flex>
   );
 };
+
 export default RegisterScreen;
