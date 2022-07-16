@@ -28,8 +28,8 @@ const HomeScreen = () => {
         <Message type="error">{error}</Message>
       ) : (
         <Grid templateColumns="1fr 1fr 1fr 1fr" gap="8">
-          {products.map((newProduct) => (
-            <ProductCard key={newProduct._id} product={newProduct} />
+          {products.map((product) => (
+            <ProductCard key={product._id} product={product} />
           ))}
         </Grid>
       )}
