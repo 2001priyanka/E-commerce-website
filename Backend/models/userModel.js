@@ -12,10 +12,10 @@ const userSchema = mongoose.Schema(
       required: true,
       unique: true,
     },
-    password: {
+    password: {                   
       type: String,
       required: true,
-    },
+    },  
     isAdmin: {
       type: Boolean,
       required: true,
@@ -24,7 +24,7 @@ const userSchema = mongoose.Schema(
   },
   { timestamps: true }
 );
-userSchema.methods.matchPassword = async function (enteredPassword) {
+userSchema.methods.matchPassword = async function (enteredPassword) {         
   return await bcrypt.compare(enteredPassword, this.password);
 };
 

@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import {
   Link as RouterLink,
   useSearchParams,
   useNavigate,
-} from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+} from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Button,
   Flex,
@@ -15,78 +15,78 @@ import {
   Input,
   Link,
   Spacer,
-} from '@chakra-ui/react';
-import Message from '../components/Message';
-import FormContainer from '../components/FormContainer';
-import { login } from '../actions/userActions';
+} from "@chakra-ui/react";
+import Message from "../components/Message";
+import FormContainer from "../components/FormContainer";
+import { login } from "../actions/userActions";
 
-const LoginScreen = () => {
+const LoginScreen = () => { 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   let [searchParams] = useSearchParams();
-  let redirect = searchParams.get('redirect') || '/';
+  let redirect = searchParams.get("redirect") || "/";
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
 
-  useEffect(() => {
+  useEffect(() => { 
     if (userInfo) {
       navigate(redirect);
     }
   }, [navigate, userInfo, redirect]);
 
-  const submitHandler = (e) => {
+  const submitHandler = (e) => {  
     e.preventDefault();
     dispatch(login(email, password));
   };
 
   return (
-    <Flex w='full' alignItems='center' justifyContent='center' py='5'>
+    <Flex w="full" alignItems="center" justifyContent="center" py="5">
       <FormContainer>
-        <Heading as='h1' mb='8' fontSize='3xl'>
+        <Heading as="h1" mb="8" fontSize="3xl">
           Login
-        </Heading>
+        </Heading>    
 
-        {error && <Message type='error'>{error}</Message>}
+        {error && <Message type="error">{error}</Message>}
 
         <form onSubmit={submitHandler}>
-          <FormControl id='email'>
-            <FormLabel htmlFor='email'>Email address</FormLabel>
+          <FormControl id="email">
+            <FormLabel htmlFor="email">Email address</FormLabel>
             <Input
-              id='email'
-              type='email'
-              placeholder='username@domain.com'
+              id="email"
+              type="email"
+              placeholder="username@domain.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </FormControl>
 
-          <Spacer h='3' />
+          <Spacer h="3" />
 
-          <FormControl id='password'>
-            <FormLabel htmlFor='password'>Password</FormLabel>
+          <FormControl id="password">
+            <FormLabel htmlFor="password">Password</FormLabel>
             <Input
-              id='password'
-              type='password'
-              placeholder='************'
+              id="password"
+              type="password"
+              placeholder="************"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </FormControl>
 
-          <Button type='submit' colorScheme='teal' mt='4' isLoading={loading}>
+          <Button type="submit" colorScheme="teal" mt="4" isLoading={loading}>
             Login
           </Button>
         </form>
 
-        <Flex pt='10'>
-          <Text fontWeight='semibold'>
-            New Customer?{' '}
-            <Link as={RouterLink} to='/register'>
+        <Flex pt="10">
+          <Text fontWeight="semibold">
+            New Customer?
+            <Link as={RouterLink} to="/register">
               Click here to register
             </Link>
           </Text>

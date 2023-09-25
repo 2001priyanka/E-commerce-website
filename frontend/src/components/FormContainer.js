@@ -1,13 +1,13 @@
-import { Flex } from '@chakra-ui/react';
+import { Flex } from "@chakra-ui/react";
 
-const FormContainer = ({ children, width = 'xl' }) => {
+const FormContainer = ({ children, width = "xl" }) => {
   return (
     <Flex
-      direction='column'
-      boxShadow='md'
-      rounded='md'
-      bgColor='white'
-      p='10'
+      direction="column"
+      boxShadow="md"
+      rounded="md"
+      bgColor="white"
+      p="10"
       width={width}
     >
       {children}

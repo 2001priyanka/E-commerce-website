@@ -14,9 +14,9 @@ const authUser = asyncHandler(async (req, res) => {
   if (user && (await user.matchPassword(password))) {
     res.json({
       _id: user._id,
-      name: user.name,
+      name: user.name,  
       email: user.email,
-      isAdmin: user.isAdmin,
+      isAdmin: user.isAdmin,                  
       token: generateToken(user._id),
     });
   } else {
@@ -107,7 +107,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 // @route   GET /api/users
 // @access  private/admin
 
-const getUsers = asyncHandler(async (req, res) => {
+const  getUsers = asyncHandler(async (req, res) => {
   const users = await User.find({});
   res.json(users);
 });
@@ -159,7 +159,7 @@ const updateUser = asyncHandler(async (req, res) => {
 
     res.json({
       _id: updatedUser._id,
-      name: updatedUser.name,
+      name: updatedUser.name, 
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
     });

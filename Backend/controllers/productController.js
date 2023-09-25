@@ -1,7 +1,7 @@
 import asyncHandler from "express-async-handler";
 import Product from "../models/productModel.js";
 
-// @desc    Fetch all products
+// @desc    Fetch all products          
 // @route   GET /api/products
 // @access  public
 
@@ -39,8 +39,8 @@ const deleteProduct = asyncHandler(async (req, res) => {
     res.json({ message: "product removed" });
   } else {
     res.status(404);
-    throw new Error("Product not found");
-  }
+    throw new Error("Product not found"); 
+  } 
 });
 
 // @desc    Create a product
