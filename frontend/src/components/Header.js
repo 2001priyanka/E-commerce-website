@@ -50,7 +50,7 @@ const Header = () => {
           as="h1"
           color="whiteAlpha.800"
           fontWeight="bold"
-          size="md"
+          size="md" 
           letterSpacing="md"
         >
           <Link

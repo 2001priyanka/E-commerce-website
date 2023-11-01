@@ -4,7 +4,7 @@ import Product from "../models/productModel.js";
 // @desc    Fetch all products          
 // @route   GET /api/products
 // @access  public
-
+  
 const getProducts = asyncHandler(async (req, res) => {
   const products = await Product.find({});
   res.json(products);
@@ -49,7 +49,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
 
 const createProduct = asyncHandler(async (req, res) => {
   const product = new Product({
-    name: " Sample product",
+    name: "Sample product",
     price: 0,
     user: req.user._id,
     image: "/image/sample.jpg",
